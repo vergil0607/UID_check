@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Minimal Django File Upload Example</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+        <!-- JavaScript Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+        <style>
+            .no-display{
+                display: none;
+            }
+        </style>
+    </head>
+
+    <body>
+
+
+
+
+        <!-- Upload form. Note enctype attribute! -->
+        <form action="{% url "my-view" %}" id="file_form" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ message }}
+            <p>{{ form.non_field_errors }}</p>
+
+            <p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p>
+
+            <p>
+                {{ form.docfile.errors }}
+                {{ form.docfile }}
+            </p>
+
+
+        </form>
+
+        <!-- SPINNER -->
+        <div id="spinner1" hidden>
+            <div class="d-flex justify-content-center">
+            <div class="spinner-border text-success" role="status">
+            </div>
+            </div>
+        </div>
+
+
+        <div id="result">
+
+        </div>
+
+        <script>
+    $(document).ready(function(){
+        console.log('hi you');
+        });
+        </script>
+
+        <!--
+        $('.submit').on('click', function(){
+            console.log('submit button was pressed');
+            var formdata = new FormData();
+            formdata.append("file", getElementById("file").files[0]);
+            console.log(formdata);
+            formdata.append("csrfmiddlewaretoken", "{{ csrf_token }}");
+            console.log(formdata);
+
+            $.ajax({
+                url: "{% url "my-view" %}",
+                method: "POST",
+                processData: false,
+                contentType: false,
+                mimeType: "multipart/form-data",
+                data: formdata,
+                dataType: 'json',
+
+
+                beforeSend: function() {
+                $('#spinner1').show();
+                $(":input").prop("disabled",true);
+                         },
+
+                complete: function(){
+                $('#spinner1').hide();
+                $(":input").prop("disabled",false);
+                },
+
+
+                success: function(){
+                    console.log("Data Sent To The Backend")
+                    //$(".uform")[0].reset();
+                    $("#result").html('');
+                    $("#result").append('Request Submitted Successfully');
+                }
+            })
+        });
+
+    });
+
+        </script>
+
+    -->
+
+        {% if path %}
+        <p>Die validierte Liste:</p>
+
+
+                <button><a href="{{ path }}" download>Download</a></button>
+
+
+        {% else %}
+        <p></p>
+        {% endif %}
+
+    </body>
+</html>

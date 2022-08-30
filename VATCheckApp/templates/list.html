@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-3">
+    <div>
+        <fieldset name="multiple Files Upload">
+
+            {% if msg %}{% autoescape off %} {{ msg }} {% endautoescape %} {% endif %}
+            <div id="msg"></div>
+            <p>
+                {% csrf_token %}
+                <input type="file" id="multifiles" name="files[]"/>
+                <button id="upload" class="btn btn-primary">Validieren</button>
+            </p>
+            <div id="spinner1" style="display: none;">
+                <div class="d-flex justify-content-center"></div>
+                <div class="spinner-border text-success" role="status"></div>
+            </div>
+            {% if download %}{% autoescape off %} {{ download }} {% endautoescape %} {% endif %}
+            <div id="download"></div>
+
+        </fieldset>
+
+    </div>
+
+
+
+{% endblock content %}

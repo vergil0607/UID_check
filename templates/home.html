@@ -1,0 +1,22 @@
+<!-- templates/home.html-->
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+<div class="container mt-3">
+  {% block content %}
+  {% if user.is_authenticated %}
+  <div class="container mt-3">
+    <p> Hi {{ user.username }}!</p>
+    <button class="btn btn-secondary"><a class="text-light" href="{% url 'logout' %}">Log Out</a></button>
+  </div>
+
+  {% else %}
+  {% url 'my-view' %}
+  <div class="container mt-3">
+    <p>You are not logged in</p>
+    <button class = "btn btn-primary"><a class="text-light" href="{% url 'login' %}">Log In</a></button>
+  </div>
+
+  {% endif %}
+  {% endblock %}
+</div>
