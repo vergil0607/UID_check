@@ -1,0 +1,1 @@
+web: gunicorn VATCheck.wsgi --log-file -
