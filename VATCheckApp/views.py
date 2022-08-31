@@ -11,7 +11,7 @@ from datetime import datetime
 import openpyxl
 import os
 
-@login_required(login_url='../')
+# @login_required(login_url='../')
 def my_view(request):
     if request.method == 'GET':
         return render(request, 'list.html')
