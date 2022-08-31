@@ -5,3 +5,7 @@
 *.pyc
 __pycache__
 assets
+
+.idea
+media
+
