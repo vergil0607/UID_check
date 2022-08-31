@@ -133,8 +133,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 
-LOGIN_REDIRECT_URL = "../../validate/"
-LOGOUT_REDIRECT_URL = "../../validate/"
+LOGIN_REDIRECT_URL = "/validate/"
+LOGOUT_REDIRECT_URL = "/validate/"
 
 LOGOUT_URL = "/validate/"
 
