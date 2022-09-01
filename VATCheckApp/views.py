@@ -19,6 +19,7 @@ def my_view(request):
         print('post request')
         file = request.FILES.get('files[]', None)
         try:
+            print("In view wird handle uploaded File gestartet")
             filename = handle_uploaded_file(file, rows=200)
             if filename:
                 download_file = f'/media/validated_Documents/{filename}'
