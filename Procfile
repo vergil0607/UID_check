@@ -1,1 +1,1 @@
-web: gunicorn VATCheck.wsgi --log-file -
+web: gunicorn VATCheck.wsgi --timeout 0 --log-file -
