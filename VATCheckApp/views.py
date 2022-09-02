@@ -32,6 +32,7 @@ def my_view(request):
                 return JsonResponse({'msg':'<div class="alert alert-danger" role="alert">Bitte ein Excel file uploaden</div>'})
 
         except Exception as e:
+            print(e)
             return JsonResponse({'msg': '<div class="alert alert-danger" role="alert">Ein unerwartetes Problem ist aufgetreten</div>'})
     return render(request, 'list.html', )
 
