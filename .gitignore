@@ -1,5 +1,4 @@
 # Ignore all Excel files
-*.xlsx
 
 #Ignore compiled python files
 *.pyc
@@ -9,5 +8,6 @@ assets
 .idea
 
 staticfiles
+media
 
 db.sqlite3
