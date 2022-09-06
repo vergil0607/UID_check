@@ -7,7 +7,7 @@ import os
 workbook = 'venv/VATCheck/media/validated_Documents/checked.xlsx'
 
 def store_Github(workbook):
-    g = Github("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")
+    g = Github("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")
 
     f = NamedTemporaryFile(delete=False)
     workbook.save(f.name)
