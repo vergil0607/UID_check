@@ -6,7 +6,7 @@ import os
 from decouple import config
 
 def store_Github(workbook):
-    key = config('GITHUB_KEY')
+    key = "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"
     g = Github(key)
 
     f = NamedTemporaryFile(delete=False)
