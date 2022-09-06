@@ -1,6 +1,8 @@
 import openpyxl
 from zeep import Client
 from datetime import datetime
+from io import BytesIO
+from .file_storage import store_Github
 
 def read_xl(file):
     workbook = openpyxl.open(file)
@@ -49,9 +51,10 @@ def handle_uploaded_file(file, rows=None):
     if filetype not in ("xlsx", "xls"):
         print("Bitte ein Excel file verwenden")
     else:
-        filename = str(file).split(".")[0] + '_checked.xlsx'
         workbook = validate_UIDs(file, rows)
         print("workbook was validated, next thing is saving")
+        store_Github(workbook)
+        filename = str(file).split(".")[0] + '_checked.xlsx'
         workbook.save(f'media/validated_Documents/{filename}')
         print("The file was stored")
         return filename
