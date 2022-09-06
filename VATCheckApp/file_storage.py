@@ -3,11 +3,11 @@ from tempfile import NamedTemporaryFile
 import base64
 import openpyxl
 import os
-
-workbook = 'venv/VATCheck/media/validated_Documents/checked.xlsx'
+from decouple import config
 
 def store_Github(workbook):
-    g = Github("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")
+    key = config('GITHUB_KEY')
+    g = Github(key)
 
     f = NamedTemporaryFile(delete=False)
     workbook.save(f.name)
