@@ -22,7 +22,7 @@ def my_view(request):
             print("In view wird handle uploaded File gestartet")
             filename = handle_uploaded_file(file, rows=20)
             if filename:
-                download_file = f'https://github.com/vergil0607/UID_check/blob/master/UID_numbers.xlsx?raw=true'
+                download_file = f'/validated_Documents/{filename}'
                 return JsonResponse({'msg':'<div class="alert alert-success" role="alert">File erfolgreich validiert</div>',
                                      'download':
                                          f'<button id="download" class="btn btn-success text-light">'
