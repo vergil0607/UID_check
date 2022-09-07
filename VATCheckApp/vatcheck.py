@@ -47,13 +47,12 @@ def validate_UIDs(file, max_rows=None):
 def handle_uploaded_file(file, rows=None):
 
     filetype = str(file).split(".")[-1]
-    print(filetype)
     if filetype not in ("xlsx", "xls"):
         print("Bitte ein Excel file verwenden")
     else:
         workbook = validate_UIDs(file, rows)
         print("workbook was validated, next thing is saving")
-        store_Github(workbook)
+        # store_Github(workbook)
         filename = str(file).split(".")[0] + '_checked.xlsx'
         workbook.save(f'media/validated_Documents/{filename}')
         print("The file was stored")
