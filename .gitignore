@@ -4,9 +4,9 @@
 #Ignore compiled python files
 *.pyc
 __pycache__
-assets
 
 .idea
 staticfiles
+assets
 
 db.sqlite3
