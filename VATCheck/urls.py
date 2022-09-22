@@ -25,9 +25,9 @@ from django.shortcuts import redirect
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('', TemplateView.as_view(template_name='home.html'), name='home'),
-    path("accounts/", include("django.contrib.auth.urls")),
-    path('validate/', include('VATCheckApp.urls')),
+    # path('', TemplateView.as_view(template_name='home.html'), name='home'),
+    # path("accounts/", include("django.contrib.auth.urls")),
+    path('', include('VATCheckApp.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
