@@ -11,3 +11,7 @@
 `venv\Scripts\activate` <br>
 `pip install -r requirements.txt` <br>
 `python manage.py runserver`
+
+# Running the tool 
+ 1. Run the file run.bat 
+ 2. Open http://localhost:8000
