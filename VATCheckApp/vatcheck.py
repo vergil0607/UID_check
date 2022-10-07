@@ -21,9 +21,9 @@ def validate_UIDs(file, max_rows=None):
     workbook = openpyxl.open(file)
     worksheet = workbook[workbook.sheetnames[0]]
     if not max_rows:
-        max_rows = worksheet.max_row - 1
+        max_rows = worksheet.max_row
     client = Client("http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl")
-    for j, row in enumerate(worksheet.iter_rows(min_row=2, max_row=max_rows)):
+    for j, row in enumerate(worksheet.iter_rows(min_row=1, max_row=max_rows)):
         print(row[0].value)
         if j % 100 == 0:
             print(j)
