@@ -17,14 +17,23 @@ def validate(response):
         return "nicht gültig"
 
 
-def validate_UIDs(file, max_rows=None):
-    workbook = openpyxl.open(file)
+def validate_UIDs(file, max_rows, recycle=[], iteration = 0, max_iter=1, wb=None):
+    print(f"Iteration:  {iteration}")
+    print(file)
+    if iteration == 0:
+        workbook = openpyxl.open(file)
+    else:
+        workbook = wb
+    print(workbook)
     worksheet = workbook[workbook.sheetnames[0]]
+    failures = []
     if not max_rows:
         max_rows = worksheet.max_row
     client = Client("http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl")
-    for j, row in enumerate(worksheet.iter_rows(min_row=1, max_row=max_rows)):
-        print(row[0].value)
+    for j, row in enumerate(worksheet.iter_rows(min_row=2, max_row=max_rows)):
+        if (iteration > 0) & (iteration <= max_iter) & (j not in recycle):
+            continue
+        print(j)
         if j % 100 == 0:
             print(j)
         if row[0].value is not None:
@@ -33,15 +42,24 @@ def validate_UIDs(file, max_rows=None):
                 vat = row[0].value[2:]
                 response = client.service.checkVat(countryCode=country, vatNumber=vat)['valid']
                 row[4].value = validate(response)
+                with open('logfile.csv', 'a') as f:
+                    f.write(str(j + 1) + ";" + row[0].value + ";" + row[4].value + '\n')
 
             except Exception as e:
-                print(e)
+                # Add Index of failure to list
+                failures.append(j)
                 row[4].value = "ungültiger input"
+                with open('logfile.csv', 'a') as f:
+                    f.write(str(j + 1) + ";" + row[0].value + ";" + row[4].value + ";" + str(e) + '\n')
         else:
             row[4].value = 'blank'
 
-        print(row[4].value)
-    return workbook
+    # run the file again with failures
+    if iteration+1<=max_iter:
+        return validate_UIDs(file, max_rows, recycle=failures, iteration=iteration+1, max_iter=max_iter, wb=workbook)
+    else:
+        return workbook
+
 
 
 def handle_uploaded_file(file, rows=None):
@@ -50,7 +68,8 @@ def handle_uploaded_file(file, rows=None):
     if filetype not in ("xlsx", "xls"):
         print("Bitte ein Excel file verwenden")
     else:
-        workbook = validate_UIDs(file, rows)
+        workbook = validate_UIDs(file, max_rows=None, max_iter=3)
+        print(workbook)
         print("workbook was validated, next thing is saving")
         # store_Github(workbook)
         filename = str(file).split(".")[0] + '_checked.xlsx'
