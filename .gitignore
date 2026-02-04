@@ -8,5 +8,6 @@ __pycache__
 .idea
 staticfiles
 assets
+/samples
 
 db.sqlite3

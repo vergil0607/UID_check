@@ -4,6 +4,7 @@ from datetime import datetime
 from io import BytesIO
 from .file_storage import store_Github
 
+
 def read_xl(file):
     workbook = openpyxl.open(file)
     worksheet = workbook[workbook.sheetnames[0]]
@@ -17,7 +18,7 @@ def validate(response):
         return "nicht gültig"
 
 
-def validate_UIDs(file, max_rows, recycle=[], iteration = 0, max_iter=1, wb=None):
+def validate_UIDs(file, max_rows, recycle=[], iteration=0, max_iter=1, wb=None):
     print(f"Iteration:  {iteration}")
     print(file)
     if iteration == 0:
