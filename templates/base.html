@@ -6,30 +6,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}UID Validierung{% endblock %}</title>
 
+    {% load static %}
+
   <!-- typography -->
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
 
   <!-- bootstrap -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+  <!-- favicon -->
+  <link rel="icon" type="image/svg+xml" href="{% static 'img/favicon.png' %}">
+
   <!-- jquery -->
   <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 
   <!-- custom js -->
-  {% load static %}
+
   <script src="{% static 'main.js' %}" defer></script>
 
   <style>
     :root {
-      --bg-deep: #0b1220;
-      --bg-mid: #142536;
-      --bg-accent: #1b3a54;
+      --bg-deep: #122434;
+      --bg-mid: #1b3448;
+      --bg-accent: #22445f;
       --ink: #eef6fb;
       --muted: #b7c7d6;
       --brand: #2a8ecf;
       --brand-soft: rgba(42, 142, 207, 0.22);
-      --card: rgba(7, 16, 28, 0.68);
-      --stroke: rgba(255, 255, 255, 0.12);
+      --card: rgba(20, 38, 56, 0.62);
+      --stroke: rgba(255, 255, 255, 0.18);
       --glow: rgba(42, 142, 207, 0.35);
     }
 
@@ -40,8 +45,8 @@
       font-family: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
       color: var(--ink);
       background:
-        radial-gradient(1200px 600px at 0% -10%, rgba(42, 142, 207, 0.18), transparent 60%),
-        radial-gradient(900px 500px at 110% 10%, rgba(34, 86, 126, 0.35), transparent 55%),
+        radial-gradient(1200px 600px at 0% -10%, rgba(42, 142, 207, 0.24), transparent 60%),
+        radial-gradient(900px 500px at 110% 10%, rgba(64, 118, 160, 0.42), transparent 55%),
         linear-gradient(160deg, var(--bg-deep), var(--bg-mid) 50%, var(--bg-accent));
       min-height: 100vh;
     }
@@ -67,7 +72,7 @@
     .page::before {
       width: 420px;
       height: 420px;
-      background: radial-gradient(circle at 30% 30%, var(--brand), transparent 60%);
+      background: radial-gradient(circle at 30% 30%, rgba(42, 142, 207, 0.75), transparent 60%);
       top: -160px;
       left: -120px;
     }
@@ -75,7 +80,7 @@
     .page::after {
       width: 360px;
       height: 360px;
-      background: radial-gradient(circle at 70% 30%, rgba(68, 140, 192, 0.6), transparent 55%);
+      background: radial-gradient(circle at 70% 30%, rgba(82, 150, 198, 0.7), transparent 55%);
       bottom: -180px;
       right: -140px;
     }
@@ -125,7 +130,7 @@
     .logo-box {
       border-radius: 18px;
       border: 1px solid var(--stroke);
-      background: rgba(8, 20, 34, 0.65);
+      background: rgba(22, 42, 60, 0.55);
       padding: 12px 16px;
       box-shadow: 0 18px 36px rgba(0, 0, 0, 0.28);
       display: flex;
@@ -137,7 +142,7 @@
       display: block;
       height: 64px;
       width: auto;
-      filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.45));
+      filter: brightness(0) invert(1) drop-shadow(0 10px 16px rgba(0, 0, 0, 0.35));
     }
 
     .content {
@@ -182,9 +187,9 @@
           <div class="brand-subtitle">Schnelle Pruefung fuer EU USt-IdNr.</div>
         </div>
       </div>
-      <div class="logo-box" aria-label="Alpine Data Engineers logo">
+      <a class="logo-box" href="https://alpinedataengineers.com" target="_blank" rel="noopener" aria-label="Alpine Data Engineers logo">
         <img src="{% static 'img/alpine-data-engineers.png' %}" alt="Alpine Data Engineers" />
-      </div>
+      </a>
     </header>
 
     <main class="content">
