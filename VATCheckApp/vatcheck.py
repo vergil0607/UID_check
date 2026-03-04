@@ -1,14 +1,5 @@
 import openpyxl
 from zeep import Client
-from datetime import datetime
-from io import BytesIO
-from .file_storage import store_Github
-
-
-def read_xl(file):
-    workbook = openpyxl.open(file)
-    worksheet = workbook[workbook.sheetnames[0]]
-    return worksheet
 
 
 def validate(response):
@@ -60,7 +51,6 @@ def validate_UIDs(file, max_rows, recycle=[], iteration=0, max_iter=1, wb=None):
         return validate_UIDs(file, max_rows, recycle=failures, iteration=iteration+1, max_iter=max_iter, wb=workbook)
     else:
         return workbook
-
 
 
 def handle_uploaded_file(file, rows=None):

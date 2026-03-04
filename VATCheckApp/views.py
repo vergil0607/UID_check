@@ -1,17 +1,8 @@
-from django.shortcuts import redirect, render
-from django.core.files.storage import default_storage
-from django.http import HttpResponse, Http404, JsonResponse
-from django.conf import settings
-from django.contrib.auth.decorators import login_required
-import time
-from .models import Document
-from .forms import DocumentForm
+from django.shortcuts import render
+from django.http import JsonResponse
 from .vatcheck import handle_uploaded_file
-from datetime import datetime
-import openpyxl
-import os
 
-# @login_required(login_url='../')
+
 def my_view(request):
     if request.method == 'GET':
         return render(request, 'list.html')
